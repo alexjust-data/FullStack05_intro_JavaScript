@@ -23,7 +23,7 @@ El formato del curso será el siguiente:
 
 **IMPORTANTE** a programar se aprende programando por lo que se recomienda que se intenten los ejercicios durante clase o en diferido si es tu caso.
 
-**La práctica** está en la carpeta `test`. Esta práctica consiste en unos primeros ejercicios cortos y luego un reto un poco más grande y complejo. En este repositorio también habrá un video (`test/video`) con explicación de la práctica y del ejercicio. Nuestro objetivo es que todos intenten y puedan resolver la práctica.
+**La práctica** está en la carpeta `test`. Esta práctica consiste en unos primeros ejercicios cortos y luego un reto un poco más grande y complejo.
 
 ## Requisitos
 
