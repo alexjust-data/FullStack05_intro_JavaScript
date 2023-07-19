@@ -107,8 +107,7 @@ if (escala === "C") {
 
 
 // problema transformar temperaturas
-  temperatura = escala === "C" ? temperatura - 273.15 : temperatura + 273.15;
+temperatura = escala === "C" ? temperatura - 273.15 : temperatura + 273.15;
 
-  console.log(temperatura)
+console.log(temperatura)
 
-  
