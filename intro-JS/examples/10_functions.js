@@ -105,7 +105,6 @@ console.log(oddNumbers);
 
 //////
 // EJERCICIO IMPARES // FORMA CLASICA DE CREAR LA FUNCION
-//////////////////
 // FÍJATE QUE EL NOMBRE DE LA FUNCIÓN ESTÁ FUERA DE LA FUNCIÓN, LA DECLARAS.
 
 const getOddNumbers = function (numbers) {
@@ -182,7 +181,7 @@ const foo2 = (...params) => {
     console.log(params)
 }
 
-foo2(1,2,3,"prueba", true)
+foo2(1,2,3,"prueba", true) //(5) [1, 2, 3, 'prueba', true]
 
 
 
@@ -198,17 +197,16 @@ const result = sumar(1,2,3,4,5);
 console.log(result) //15
 
 
-// CLOJURES
+// CLOSURES
 const counter = () => {
+    /**
+     * funcion que retorna un objeto con varias funciones
+    */
     let count = 0;
 
-    const increment = () => {
-        count++;
-    }
-
-    const getCount = () => count; // funcion para conseguir el count
-
-    const resetCount = () => (count = 0);
+    const increment = () => count++; // incrementa el count
+    const getCount = () => count;    // para conseguir el count
+    const resetCount = () => count = 0; // reseteo
 
     return {
         increment,
@@ -221,9 +219,91 @@ const contador1 = counter();
 
 
 console.log(contador1);
+/**
+ * cada llamada a cada método ejecutará su accion
+ */
+contador1.increment(); // incrementa el count
+contador1.increment();
+contador1.increment();
 
-contador1.increment();
-contador1.increment();
-contador1.increment();
+console.log(contador1.count()); // me dirá cuánto vale
+console.log(contador1.resetCount()); // me dirá cuánto vale
+console.log(contador1);
 
-console.log(contador1.count());
+
+
+/**
+ * EJERCICIO : 
+ * crear un clousure de una calculadroa que pueda hacer las siguientes operciones guardando el resultado
+ */
+
+
+const calculadora = () => {
+    let initialNumber = 0;
+
+    const sumar = (number) => (initialNumber += number);
+    const restar = (number) => (initialNumber -= number);
+    const multiplicar = (number) => (initialNumber *= number);
+    const dividir = (number) => (initialNumber /= number);
+
+    return {
+        sumar,
+        restar,
+        multiplicar,
+        dividir
+    };
+};
+
+let miCalculadora = calculadora();
+console.log(miCalculadora.sumar(5));
+console.log(miCalculadora.restar(2));
+console.log(miCalculadora.multiplicar(4));
+console.log(miCalculadora.dividir(2));
+console.log(miCalculadora.sumar(10));
+
+
+const calculadora2 = () => {
+    let initialNumber = 0;
+
+    return {
+        sumar : (number) => (initialNumber += number),
+        restar : (number) => (initialNumber -= number),
+        multiplicar : (number) => (initialNumber *= number),
+        dividir : (number) => (initialNumber /= number),
+    };
+};
+
+miCalculadora = calculadora2();
+console.log(miCalculadora.sumar(5));
+console.log(miCalculadora.restar(2));
+console.log(miCalculadora.multiplicar(4));
+console.log(miCalculadora.dividir(2));
+console.log(miCalculadora.sumar(10));
+
+
+
+/**
+ * PASAR UNA FUNCION COMO PARÁMETRO
+ * - hasta ahora hemos ido pasando parámetros clásicos
+ * - ahora vamos a poder pasar incluso una función, le llamo por ejemplo "operacion"
+ */
+const realizarOperaciones = (num1, num2, operacion) => {
+
+    return operacion(num1, num2);
+};
+
+// funciones que reciben dos parámetros y realizan una operacion
+const suma = (a, b) => a + b;
+const resta = (a, b) => a - b;
+
+// puedo delegar a quien desarrolle esta linea, qué tipo de operación quiere
+let resultadoSuma = realizarOperaciones(10, 20, suma); // 30
+console.log(resultadoSuma);
+
+let resultadoResta = realizarOperaciones(1, 2, resta); // -1
+console.log(resultadoResta);
+
+let resultadoMensaje = realizarOperaciones(10, 20, function(num1, num2){ 
+    console.log(num1, num2); // 10 20 
+});
+console.log(resultadoMensaje);
