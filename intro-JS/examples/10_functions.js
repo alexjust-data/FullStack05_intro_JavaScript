@@ -303,7 +303,8 @@ console.log(resultadoSuma);
 let resultadoResta = realizarOperaciones(1, 2, resta); // -1
 console.log(resultadoResta);
 
+// literalmente metemos una funcion en el parámetro
 let resultadoMensaje = realizarOperaciones(10, 20, function(num1, num2){ 
     console.log(num1, num2); // 10 20 
 });
-console.log(resultadoMensaje);
+console.log(resultadoMensaje); //undefined
