@@ -1,137 +1,137 @@
 
 
-// /**
-//  * ASINCRONIA
-//  * EL camino lineal se va a bifurcar, en segundo plano y van a ejecutarse
-//  * cuando ocurra un evento determinado. Cuando hace click en una web eso va a pasar
-//  * si quieres leer un archivo y sacar el texto, esa lectura en JS suele ser asincrono,
-//  * es decir el codigo no va a esperarnos irá haciendo.
-//  */
+/**
+ * ASINCRONIA
+ * EL camino lineal se va a bifurcar, en segundo plano y van a ejecutarse
+ * cuando ocurra un evento determinado. Cuando hace click en una web eso va a pasar
+ * si quieres leer un archivo y sacar el texto, esa lectura en JS suele ser asincrono,
+ * es decir el codigo no va a esperarnos irá haciendo.
+ */
 
-// console.log("Hola");
-// // esto se ejecuta, pero de forma paralela
-// // no es que se cree otro hilo de ejecución
-// // si no que queda a la espera, cuando acaba o otro, se jecuta
-// setTimeout( () => {
-//     console.log("mundo");
-// }, 3000);
-// console.log("Fin")
-
-
-
-// console.log("Hola");
-// const cargarDatos = () => {
-//     setTimeout( () => {
-//         console.log("Datos cargados");
-//     }, 2000);
-// };
-
-// let loading = true;
-// cargarDatos();
-// loading = false;
-// console.log(loading);
-
-// // Hola
-// // false
-// // Datos cargados
+console.log("Hola");
+// esto se ejecuta, pero de forma paralela
+// no es que se cree otro hilo de ejecución
+// si no que queda a la espera, cuando acaba o otro, se jecuta
+setTimeout( () => {
+    console.log("mundo");
+}, 3000);
+console.log("Fin")
 
 
 
+console.log("Hola");
+const cargarDatos = () => {
+    setTimeout( () => {
+        console.log("Datos cargados");
+    }, 2000);
+};
 
-// /**
-//  * CONTROLAR LA ESPERA
-//  * acceder al valor
-//  */
+let loading = true;
+cargarDatos();
+loading = false;
+console.log(loading);
 
-// /*
-//     1. callback -> cb
-//     2. Promesas
-//     3. Async / await
-// */
-
-// /**
-//  * CALLBACK
-//  * - Que la funcióin cb se ejecute justo cuando termine el timeOut
-//  */
-// const cargarDatosCb = (cb) => {        // Le estamos pasando como parámetro una funcion anonima (cb) => {...} 
-//     setTimeout( () => {                // esta funcion se llamará cuando pasen 2 segundos
-//         console.log("Datos cargados1");
-//         cb("Datos cargados2");         // cb como si digo "const cb = (data) => console.log("Datos cargados");"
-//     }, 2000);
-// };
-// loading = true;
-// console.log(loading);
-
-// /**
-//  * "data" es un parámetro de la función anónima (data) => {...} que pasas como argumento a cargarDatosCb().
-//  * Cuando llamas cargarDatosCb( (data) => {...}), estás pasando una función de callback que será invocada 
-//  * dentro de cargarDatosCb(). Cuando se ejecuta esta línea cb("Datos cargados2"), estás invocando esa función 
-//  * de callback y le estás pasando la cadena de texto "Datos cargados2" como argumento.
-//  * 
-//  * El nombre data aquí es solo una elección de nombre de variable, podrías llamarlo de cualquier otra forma.
-//  */
-// cargarDatosCb( (data) => {
-//     console.log("data");
-//     console.log(data);      // este data es lo que manda cb("Datos cargados");
-//     loading = false;
-//     console.log(loading);
-// });
+// Hola
+// false
+// Datos cargados
 
 
 
 
-// /**
-//  * CONTROL TEPORAL DE FUNCIONES
-//  */
+/**
+ * CONTROLAR LA ESPERA
+ * acceder al valor
+ */
 
-// const downloadUserData = (cb) => {
-//     setTimeout( () => {
-//         console.log("User data download");
-//         cb(); // esta función se ejecuta cuando se hayan descargados los datos de arriba, a los dos segundos
-//     }, 2000);
-// };
-// const processUserData = (callback) => {
-//     setTimeout( () => {
-//         console.log("User data processed")
-//         callback();
-//     }, 1000);
-// };
-// const displayUserDashboard = (callback) => {
-//     setTimeout( () => {
-//         console.log("User dashborad displayed")
-//         callback();
-//     }, 3000);
-// };
+/*
+    1. callback -> cb
+    2. Promesas
+    3. Async / await
+*/
 
-// // downloadUserData();       -> descargamos datos
-// // processUserData();        -> procesamos datos
-// // displayUserDashboard();   -> display datos
+/**
+ * CALLBACK
+ * - Que la funcióin cb se ejecute justo cuando termine el timeOut
+ */
+const cargarDatosCb = (cb) => {        // Le estamos pasando como parámetro una funcion anonima (cb) => {...} 
+    setTimeout( () => {                // esta funcion se llamará cuando pasen 2 segundos
+        console.log("Datos cargados1");
+        cb("Datos cargados2");         // cb como si digo "const cb = (data) => console.log("Datos cargados");"
+    }, 2000);
+};
+loading = true;
+console.log(loading);
 
-// /**
-//  * como la función callback(); de downloadUserData(); se ejecuta cuando ha terminado la descarga del usuario pasados 
-//  * los 2 segundos, podemos decir con 100% de seguridad que se han descargado los datos del usuario. Es decir, en este
-//  * bloque --> downloadUserData(); todo esto que estamos hablando ya ha termiando.
-//  * 
-//  * Entonces si eso ya ha terminado, podemos colocarle dentro la otra función para que se inicie después
-//  * para procesar ahora los datos descargados.
-//  * 
-//  * Cuando procese los datos, puedo añadir dentro el display de datos.
-// */
-
-// downloadUserData( () => {
-//     processUserData( () => {
-//         displayUserDashboard( () => {
-//             console.log("Fin, ya se ve el usuario por la pantalla")
-//         });
-//     });
-// });
+/**
+ * "data" es un parámetro de la función anónima (data) => {...} que pasas como argumento a cargarDatosCb().
+ * Cuando llamas cargarDatosCb( (data) => {...}), estás pasando una función de callback que será invocada 
+ * dentro de cargarDatosCb(). Cuando se ejecuta esta línea cb("Datos cargados2"), estás invocando esa función 
+ * de callback y le estás pasando la cadena de texto "Datos cargados2" como argumento.
+ * 
+ * El nombre data aquí es solo una elección de nombre de variable, podrías llamarlo de cualquier otra forma.
+ */
+cargarDatosCb( (data) => {
+    console.log("data");
+    console.log(data);      // este data es lo que manda cb("Datos cargados");
+    loading = false;
+    console.log(loading);
+});
 
 
-// /**
-//  * PROMISES
-//  * en JS las promesas permiten envolver una parte de corto asincrono para crear una promesa y 
-//  * controlar su ejecucion. new Promise( () => {...} );
-//  */
+
+
+/**
+ * CONTROL TEPORAL DE FUNCIONES
+ */
+
+const downloadUserData = (cb) => {
+    setTimeout( () => {
+        console.log("User data download");
+        cb(); // esta función se ejecuta cuando se hayan descargados los datos de arriba, a los dos segundos
+    }, 2000);
+};
+const processUserData = (callback) => {
+    setTimeout( () => {
+        console.log("User data processed")
+        callback();
+    }, 1000);
+};
+const displayUserDashboard = (callback) => {
+    setTimeout( () => {
+        console.log("User dashborad displayed")
+        callback();
+    }, 3000);
+};
+
+// downloadUserData();       -> descargamos datos
+// processUserData();        -> procesamos datos
+// displayUserDashboard();   -> display datos
+
+/**
+ * como la función callback(); de downloadUserData(); se ejecuta cuando ha terminado la descarga del usuario pasados 
+ * los 2 segundos, podemos decir con 100% de seguridad que se han descargado los datos del usuario. Es decir, en este
+ * bloque --> downloadUserData(); todo esto que estamos hablando ya ha termiando.
+ * 
+ * Entonces si eso ya ha terminado, podemos colocarle dentro la otra función para que se inicie después
+ * para procesar ahora los datos descargados.
+ * 
+ * Cuando procese los datos, puedo añadir dentro el display de datos.
+*/
+
+downloadUserData( () => {
+    processUserData( () => {
+        displayUserDashboard( () => {
+            console.log("Fin, ya se ve el usuario por la pantalla")
+        });
+    });
+});
+
+
+/**
+ * PROMISES
+ * en JS las promesas permiten envolver una parte de corto asincrono para crear una promesa y 
+ * controlar su ejecucion. new Promise( () => {...} );
+ */
 
 const downloadUserData1 = () => {
     return new Promise( (resolve, reject) => {
@@ -164,66 +164,66 @@ const displayUserDashboard1 = () => {
     });
 };
 
-// /**
-//  * en las promesas para saber si algo ha terminado tenemos los metodos
-//  * then, 
-//  * catch, 
-//  * finally
-//  */
-// console.log("Cargando ...");
+/**
+ * en las promesas para saber si algo ha terminado tenemos los metodos
+ * then, 
+ * catch, 
+ * finally
+ */
+console.log("Cargando ...");
 
-// // de esta forma no estamos utilizando bien las promesas
-// // fíjate que si se hace grande crecemos en diagonal
-// downloadUserData1()
-//     .then( () => {
-//        processUserData1()
-//         .then ( () => {
-//             displayUserDashboard1()
-//                 .then( () => {
-//                     console.log("Fin1, ya se ve el usuario por pantalla");
-//                 });
-//         }); 
-// });
+// de esta forma no estamos utilizando bien las promesas
+// fíjate que si se hace grande crecemos en diagonal
+downloadUserData1()
+    .then( () => {
+       processUserData1()
+        .then ( () => {
+            displayUserDashboard1()
+                .then( () => {
+                    console.log("Fin1, ya se ve el usuario por pantalla");
+                });
+        }); 
+});
 
-// console.log("Cargando1 ...");
-// //podemos encadenarlas, así cuando return uno... comienza lo otro.
-// downloadUserData1()
-//     .then( () => {
-//        return processUserData1();
-//     }).then( () => {
-//         return displayUserDashboard1();
-//     }).then( () => {
-//         console.log("Fin2, ya se ve el usuario por pantalla");
-//     });
+console.log("Cargando1 ...");
+//podemos encadenarlas, así cuando return uno... comienza lo otro.
+downloadUserData1()
+    .then( () => {
+       return processUserData1();
+    }).then( () => {
+        return displayUserDashboard1();
+    }).then( () => {
+        console.log("Fin2, ya se ve el usuario por pantalla");
+    });
 
-// //variaciones
-// downloadUserData1()
-//     .then( () => processUserData1)
-//     .then( () => displayUserDashboard1)
-//     .then( () => {
-//         console.log("Fin2, ya se ve el usuario por pantalla");
-//     });
+//variaciones
+downloadUserData1()
+    .then( () => processUserData1)
+    .then( () => displayUserDashboard1)
+    .then( () => {
+        console.log("Fin2, ya se ve el usuario por pantalla");
+    });
 
-// //variaciones... quizás este es mas facil de leer
-// downloadUserData1()
-//     .then(processUserData1)
-//     .then(displayUserDashboard1)
-//     .then( () => {
-//         console.log("Fin2, ya se ve el usuario por pantalla");
-//     });
+//variaciones... quizás este es mas facil de leer
+downloadUserData1()
+    .then(processUserData1)
+    .then(displayUserDashboard1)
+    .then( () => {
+        console.log("Fin2, ya se ve el usuario por pantalla");
+    });
 
 
-// // CAPTURANDO ERRORES
-// downloadUserData1()
-//     .then( () => {
-//        return processUserData1();
-//     }).then( () => {
-//         return displayUserDashboard1();
-//     }).then( () => {
-//         console.log("Fin2, ya se ve el usuario por pantalla");
-//     }).catch(() => {
-//         console.log("CATCH!!!")
-//     });
+// CAPTURANDO ERRORES
+downloadUserData1()
+    .then( () => {
+       return processUserData1();
+    }).then( () => {
+        return displayUserDashboard1();
+    }).then( () => {
+        console.log("Fin2, ya se ve el usuario por pantalla");
+    }).catch(() => {
+        console.log("CATCH!!!")
+    });
 
 
 
