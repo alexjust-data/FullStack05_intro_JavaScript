@@ -355,3 +355,96 @@ let librosFiltrados = libros
     .map(libro => libro.titulo);
 
 console.log(librosFiltrados);
+
+
+
+
+/**
+ * reduce : pasamos de una cosa a otra
+ * find : 
+ * findIndex : 
+ */
+
+const numbersreduceExample = [1,2,4,5];
+
+// pasamos de array --> number
+// con recude no tenemos (item, index) sino el valor acumulado y el index
+numbersreduceExample.reduce((acum, index) => {
+    console.log(acum);
+    console.log(index);
+    return "Hola";      // este es el valor que se acumula en cada iteracion acum=Hola
+});
+
+const resultado = numbersreduceExample.reduce( (acum, item) => {
+    console.log("Iteration:")
+    console.log("Acum : ", acum);
+    console.log("Index : ", item);
+    const resultado = acum + item;
+    return resultado;      // este es el valor que se acumula en cada iteracion resultado = acum + index;
+}, 0);                     // el resulatdo es la suma del vectorconst 
+
+console.log(resultado);
+
+
+
+
+/**
+ * EJERCICIO : queremos pasar de un arrray a un objeto
+ */
+
+
+const transactions = [
+    { id: 'trx001', amount: 100, description: 'Purchase 1' },
+    { id: 'trx002', amount: 50, description: 'Purchase 2' },
+    { id: 'trx003', amount: 200, description: 'Purchase 3' },
+  ];
+  
+// usando reduce
+
+const transactionsObject = transactions.reduce((obj, transaction) => {
+    obj[transaction.id] = transaction;
+    return obj;
+}, {});
+
+console.log(transactionsObject);
+
+/*
+const resultado = {
+trx001: { id: 'trx001', amount: 100, description: 'Purchase 1' },
+trx002: { id: 'trx002', amount: 50, description: 'Purchase 2' },
+trx003: { id: 'trx003', amount: 200, description: 'Purchase 3' }
+}
+*/
+
+
+
+/**
+ * find, finsIndex
+ */
+
+// nos va a devolver un objeto
+const trx003 = transactions.find( (transactions) =>{
+    return transactions.id === "trx003";  // irá recorriendo todas hasta que encuentre
+});
+
+console.log(trx003);
+
+
+// nos va a devolver la posicion del array
+const trx001 = transactions.findIndex( (transactions) =>{
+    return transactions.id === "trx001";  // irá recorriendo todas hasta que encuentre
+});
+
+console.log(trx001);
+
+
+const getTransaction = (tId) => {
+    // nos va a devolver un objeto
+    const trx = transactions.find( (transactions) => {
+        return transactions.id === tId;  // irá recorriendo todas hasta que encuentre
+    });
+    if (!trx) throw new Error("Not found");
+    return trx
+};
+const trx002 = getTransaction("trx002");
+console.log(trx002);
