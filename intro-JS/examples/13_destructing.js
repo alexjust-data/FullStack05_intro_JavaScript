@@ -155,3 +155,64 @@ const useProfile = () => {
 };
 
 const [data, setData] = useProfile(); //[]
+
+
+
+
+
+
+// ESTO ES UN OBJETO
+let estudiantes = [
+    {
+        name: "Alex",
+        age : 23,
+        cursos : [
+            {
+                name : "Mates",
+                score : 95
+            },
+            {
+                name : "History",
+                score : 76
+            }
+        ]
+    }
+];
+// PUES PODEMOS DESTRUCTURARLO...
+let [ { age : firtsEstudentAge } ] = [
+    {
+        name: "Alex",
+        age : 23,
+        cursos : [
+            {
+                name : "Mates",
+                score : 95
+            },
+            {
+                name : "History",
+                score : 76
+            }
+        ]
+    }
+];
+console.log(firtsEstudentAge);
+
+let [ { age : firtsEstudentAge2, cursos : [{score}] }] = [
+    {
+        name: "Alex",
+        age : 23,
+        cursos : [
+            {
+                name : "Mates",
+                score : 95
+            },
+            {
+                name : "History",
+                score : 76
+            }
+        ]
+    }
+];
+console.log(score);
+
+
