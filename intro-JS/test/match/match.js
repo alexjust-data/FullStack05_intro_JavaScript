@@ -161,21 +161,21 @@ export function createMatch(player1, player2) {
 //   return {players, players2};
 // };
 
-export function getPairs(players) {
-  // Mezclar jugadores y devolver en pares
-  const shuffled = players.sort(() => 0.5 - Math.random());
-  return [shuffled.slice(0, 2), shuffled.slice(2)];
-}
 
-export function playMatch(match) {
-  while (!match.getWinner()) {
-    const randomPoint = Math.floor(Math.random() * 2) + 1;
-    match.pointWonBy(randomPoint);
+// export function playMatch(match) {
+//   while (!match.getWinner()) {
+//     const randomPoint = Math.floor(Math.random() * 2) + 1;
+//     match.pointWonBy(randomPoint);
 
-    console.log('\n-------------\nCurrentRoundScore : ', match.getCurrentRoundScore());
-    console.log('getMatchScore (rounds) : ', match.getMatchScore());
-    console.log('GameScore (games won) : ', match.getGameScore());
-  }
-  return match.getWinner();
-}
+//     console.log('\n-------------\nCurrentRoundScore : ', match.getCurrentRoundScore());
+//     console.log('getMatchScore (rounds) : ', match.getMatchScore());
+//     console.log('GameScore (games won) : ', match.getGameScore());
+//   }
+//   return match.getWinner();
+// }
 
+// function getPairs(players) {
+//   // Mezclar jugadores y devolver en pares
+//   const shuffled = players.sort(() => 0.5 - Math.random());
+//   return [shuffled.slice(0, 2), shuffled.slice(2)];
+// }
