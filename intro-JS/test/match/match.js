@@ -147,33 +147,30 @@ class Match {
     return null;
   };    
 };
-
-
-
-
+  
 export function createMatch(player1, player2) {
   return new Match(player1, player2);
 };
 
 export function getPlayers(players) {
-let players2 = [];
-for (let i = 0; i < 2; i++) {
-  const randomIndex = Math.floor(Math.random() * players.length);
-  players2.push(players.splice(randomIndex, 1)[0]);
-}
-return {players, players2};
+  let players2 = [];
+  for (let i = 0; i < 2; i++) {
+    const randomIndex = Math.floor(Math.random() * players.length);
+    players2.push(players.splice(randomIndex, 1)[0]);
+  }
+  return {players, players2};
 };
 
 
 export function playMatch(match) {
-while (!match.getWinner()) {
-  const randomPoint = Math.floor(Math.random() * 2) + 1;
-  match.pointWonBy(randomPoint);
+  while (!match.getWinner()) {
+    const randomPoint = Math.floor(Math.random() * 2) + 1;
+    match.pointWonBy(randomPoint);
 
-  console.log('\n-------------\nCurrentRoundScore : ', match.getCurrentRoundScore());
-  console.log('getMatchScore (rounds) : ', match.getMatchScore());
-  console.log('GameScore (games won) : ', match.getGameScore());
-}
-return match.getWinner();
+    console.log('\n-------------\nCurrentRoundScore : ', match.getCurrentRoundScore());
+    console.log('getMatchScore (rounds) : ', match.getMatchScore());
+    console.log('GameScore (games won) : ', match.getGameScore());
+  }
+  return match.getWinner();
 };
 
