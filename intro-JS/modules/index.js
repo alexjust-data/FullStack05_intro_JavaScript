@@ -83,8 +83,6 @@ let pattern = /\d{3}-\d{3}-\d{4}/;
 // para usar las regex
 console.log(pattern.test(texto));
 console.log(texto.match(pattern));
-
-;
 console.log(texto.replace(pattern, "******"));
 
 

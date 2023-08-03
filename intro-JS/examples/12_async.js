@@ -190,9 +190,11 @@ console.log("Cargando1 ...");
 downloadUserData1()
     .then( () => {
        return processUserData1();
-    }).then( () => {
+    })
+    .then( () => {
         return displayUserDashboard1();
-    }).then( () => {
+    })
+    .then( () => {
         console.log("Fin2, ya se ve el usuario por pantalla");
     });
 
