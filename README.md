@@ -1,6 +1,16 @@
+# Full Stack web apps [Bootcamp]
+
 ## Intro JS
 
-Módulo de intro a javascript. En este módulo vamos a prácticar los siguientes conceptos:
+INFORMACIÓN DE CONTACTO DEL INSTRUCTOR
+
+https://github.com/kevinccbsg
+Kevin Martínez
+
+
+***Módulo de intro a javascript.***
+
+En este módulo vamos a prácticar los siguientes conceptos:
 
 - Intro
 - Creando nuestro primer JS
